@@ -2,7 +2,7 @@
 
 Personal site, blog, and reference notes for Kevin Gallimore, a Senior CRM Manager. The writing lives in Markdown. The site is [Docusaurus](https://docusaurus.io/) 3.
 
-The public URL is [https://kevingallimore.com](https://kevingallimore.com).
+The public URL is [https://www.kevingallimore.com](https://www.kevingallimore.com). The apex domain redirects there.
 
 Posts go in `blog/`. Reference notes go in `docs/`. The homepage, About page, and splash page are React files under `src/pages/` because they are not articles.
 
