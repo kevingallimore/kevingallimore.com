@@ -1,0 +1,12 @@
+example:
+  label: example
+  description: Sample posts used to check the site.
+ampscript:
+  label: ampscript
+  description: Salesforce Marketing Cloud AMPscript.
+ssjs:
+  label: ssjs
+  description: Server-side JavaScript for Marketing Cloud.
+sql:
+  label: sql
+  description: Query Activity SQL.

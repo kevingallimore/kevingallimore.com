@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "docusaurus-2",
+  "buildCommand": "npm run build",
+  "outputDirectory": "build",
+  "proxy": {
+    "entrypoint": "middleware.ts",
+    "matcher": ["/((?!assets/|img/).*)"]
+  }
+}
