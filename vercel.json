@@ -4,7 +4,6 @@
   "buildCommand": "npm run build",
   "outputDirectory": "build",
   "proxy": {
-    "entrypoint": "middleware.ts",
-    "matcher": ["/((?!assets/|img/).*)"]
+    "entrypoint": "middleware.ts"
   }
 }
