@@ -22,6 +22,9 @@ export const site = {
     "CRM, Email, Personalization & CDP | Salesforce Marketing Cloud & Data 360",
   description:
     "Kevin Gallimore is a Senior CRM Manager writing about CRM, email, personalization, and customer data platforms on Salesforce Marketing Cloud and Data 360.",
+  // Canonical host written into every page. Production currently
+  // 308-redirects this apex host to https://www.kevingallimore.com/.
+  // Those two hosts do not match. The canonical tag follows this value.
   url: "https://kevingallimore.com",
   // The hyphenated LinkedIn path is Kevin's profile.
   // linkedin.com/in/kevingallimore (no hyphen) belongs to someone else.
@@ -31,6 +34,13 @@ export const site = {
     "https://www.salesforce.com/trailblazer/kevin-gallimore",
   ],
 } as const;
+
+/** Browser title for the indexable splash homepage. */
+export const splashDocumentTitle =
+  "Kevin Gallimore | Marketing Technology Leader in Orlando, FL";
+
+/** Splash tagline: job title, then the site tagline. */
+export const splashTagline = `${site.jobTitle} · ${site.tagline}`;
 
 export const profileLinks = [
   {label: "LinkedIn", href: site.sameAs[0]},

@@ -2,7 +2,7 @@ import {themes as prismThemes} from "prism-react-renderer";
 import type {Config} from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 import siteExtrasPlugin from "./src/plugins/site-extras";
-import {personJsonLd, site} from "./src/site";
+import {personJsonLd, site, splashDocumentTitle} from "./src/site";
 
 /**
  * Read when the site is built, not on each visit.
@@ -21,7 +21,9 @@ if (siteMode !== "splash" && siteMode !== "live") {
 const isLive = siteMode === "live";
 
 const config: Config = {
-  title: site.name,
+  // Splash builds use the full homepage title so Docusaurus does not append
+  // the name a second time. Live builds keep the short site name.
+  title: isLive ? site.name : splashDocumentTitle,
   tagline: site.tagline,
   favicon: "img/favicon.svg",
   url: site.url,

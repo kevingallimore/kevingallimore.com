@@ -1,22 +1,34 @@
 import type {ReactNode} from "react";
 import Layout from "@theme/Layout";
-import {profileLinks, site} from "@site/src/site";
+import AboutCopy from "@site/src/components/AboutCopy";
+import ContactForm from "@site/src/components/ContactForm";
+import {
+  aboutDescription,
+  profileLinks,
+  site,
+  splashDocumentTitle,
+  splashTagline,
+} from "@site/src/site";
+
+const splashLinks = profileLinks.filter(
+  (link) => link.label === "LinkedIn" || link.label === "Trailblazer",
+);
 
 /**
- * Holding page used before launch and any later time the site is offline.
- * Change the sentence below if a maintenance notice should say something else.
+ * Public homepage while the full site is still off.
+ * The canonical URL is added by Docusaurus from site.url. Do not add a second
+ * canonical link here.
  */
 export default function Splash(): ReactNode {
   return (
-    <Layout description={`${site.tagline} This site is coming soon.`}>
+    <Layout title={splashDocumentTitle} description={aboutDescription}>
       <main className="site-intro">
-        <p className="site-kicker">{site.jobTitle}</p>
         <h1>{site.name}</h1>
-        <p className="site-tagline">{site.tagline}</p>
-        <p className="site-lede">This site is coming soon.</p>
+        <p className="site-tagline">{splashTagline}</p>
+        <AboutCopy count={3} />
         <nav aria-label="Connect">
           <ul className="connect-list">
-            {profileLinks.map((link) => (
+            {splashLinks.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
@@ -30,6 +42,7 @@ export default function Splash(): ReactNode {
             ))}
           </ul>
         </nav>
+        <ContactForm />
       </main>
     </Layout>
   );
