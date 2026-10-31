@@ -2,7 +2,7 @@ import {themes as prismThemes} from "prism-react-renderer";
 import type {Config} from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 import siteExtrasPlugin from "./src/plugins/site-extras";
-import {site} from "./src/site";
+import {personJsonLd, site} from "./src/site";
 
 /**
  * Read when the site is built, not on each visit.
@@ -19,16 +19,6 @@ if (siteMode !== "splash" && siteMode !== "live") {
 }
 
 const isLive = siteMode === "live";
-
-const person = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: site.name,
-  jobTitle: site.jobTitle,
-  url: site.url,
-  description: site.tagline,
-  sameAs: [...site.sameAs],
-};
 
 const config: Config = {
   title: site.name,
@@ -50,7 +40,8 @@ const config: Config = {
   customFields: {
     siteMode,
   },
-  // Same identity block on every page, including the splash.
+  // Same Person block on every page, including /about and the splash.
+  // Do not add another Person script on a single page.
   headTags: [
     ...site.sameAs.map((href) => ({
       tagName: "link",
@@ -59,7 +50,7 @@ const config: Config = {
     {
       tagName: "script",
       attributes: {type: "application/ld+json"},
-      innerHTML: JSON.stringify(person),
+      innerHTML: JSON.stringify(personJsonLd),
     },
   ],
   plugins: [
@@ -146,7 +137,10 @@ const config: Config = {
             {label: "GitHub", href: site.sameAs[1]},
             {label: "Trailblazer", href: site.sameAs[2]},
             ...(isLive
-              ? [{label: "RSS", href: `${site.url}/blog/rss.xml`}]
+              ? [
+                  {label: "Contact", to: "/contact"},
+                  {label: "RSS", href: `${site.url}/blog/rss.xml`},
+                ]
               : []),
           ],
         },
