@@ -58,10 +58,11 @@ export default function siteExtrasPlugin(): Plugin {
     },
     async postBuild({outDir, siteConfig}) {
       const live = siteConfig.customFields?.siteMode === "live";
-      // Splash builds must not hand crawlers a sitemap of pages that are hidden.
+      // Splash builds have no sitemap because docs and blog are not published.
+      // The homepage is still allowed, including /img/.
       const robots = live
         ? `User-agent: *\nAllow: /\n\nSitemap: ${siteConfig.url}/sitemap.xml\n`
-        : `User-agent: *\nDisallow: /\n`;
+        : `User-agent: *\nAllow: /\n`;
       await fs.writeFile(path.join(outDir, "robots.txt"), robots);
     },
   };

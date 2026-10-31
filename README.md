@@ -2,7 +2,7 @@
 
 Personal site, blog, and reference notes for Kevin Gallimore, a Senior CRM Manager. The writing lives in Markdown. The site is [Docusaurus](https://docusaurus.io/) 3.
 
-The public URL is [https://kevingallimore.com](https://kevingallimore.com).
+The public URL is [https://www.kevingallimore.com](https://www.kevingallimore.com). The apex domain redirects there.
 
 Posts go in `blog/`. Reference notes go in `docs/`. The homepage, About page, and splash page are React files under `src/pages/` because they are not articles.
 
@@ -111,10 +111,10 @@ Anything else stops the build, so a typo cannot publish the wrong version.
 
 While the splash is up:
 
-- The homepage is the coming-soon page: name, title, tagline, and links to LinkedIn, GitHub, and Trailblazer. There is no email address.
-- The page is `noindex`. On Vercel it is also HTTP 503.
+- The homepage shows the name, the senior CRM tagline, the first three About paragraphs, links to LinkedIn and Trailblazer, and the contact form. There is no email address.
+- The page is indexable. The response is HTTP 200, with no `noindex` and no `Retry-After`.
 - `/about`, `/blog`, posts, tags, the reference section, RSS, and `/sitemap.xml` redirect to `/`.
-- `robots.txt` disallows the whole host and does not list a sitemap.
+- `robots.txt` allows the host and does not list a sitemap, because this build does not publish one.
 - The Person details stay in the page for search engines. The LinkedIn URL is `https://www.linkedin.com/in/kevin-gallimore` (with the hyphen).
 
 ### Publish the full site
@@ -151,7 +151,7 @@ src/components/       splash page and the recent-posts list
 src/theme/            AMPscript and SSJS syntax highlighting
 docusaurus.config.ts  site title, navbar, and the splash/live switch
 sidebars.ts           order of the reference notes
-middleware.ts         Vercel redirects and the 503 splash response
+middleware.ts         Vercel redirects other URLs to the splash homepage
 vercel.json           tells Vercel this is Docusaurus, not Next.js
 ```
 
