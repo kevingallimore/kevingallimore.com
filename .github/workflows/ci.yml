@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  lint-and-build:
+    name: Lint and build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      # Unset SITE_MODE must build the splash. A second build checks live mode.
+      - name: Build splash mode
+        run: npm run build
+
+      - name: Build live mode
+        run: rm -rf .next && SITE_MODE=live npm run build
