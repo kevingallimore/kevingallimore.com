@@ -1,7 +1,10 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { PostList } from "@/components/post-list";
+import { Splash } from "@/components/splash";
+import { splashMetadata } from "@/lib/metadata";
 import { getPostsByTag, getTag, getTags } from "@/lib/posts";
+import { isSplashMode } from "@/lib/site-mode";
 import { site } from "@/lib/site";
 
 export const ensureStatic = "navigation";
@@ -19,6 +22,8 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: PageProps<"/tags/[tag]">): Promise<Metadata> {
+  if (isSplashMode()) return splashMetadata();
+
   const { tag: slug } = await params;
   const tag = await getTag(slug);
   if (!tag) return { title: "Not found" };
@@ -50,6 +55,8 @@ export async function generateMetadata({
 }
 
 export default async function TagPage({ params }: PageProps<"/tags/[tag]">) {
+  if (isSplashMode()) return <Splash />;
+
   const { tag: slug } = await params;
   const tag = await getTag(slug);
   if (!tag) notFound();

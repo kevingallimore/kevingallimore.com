@@ -26,5 +26,9 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Build
+      # Unset SITE_MODE must build the splash. A second build checks live mode.
+      - name: Build splash mode
         run: npm run build
+
+      - name: Build live mode
+        run: rm -rf .next && SITE_MODE=live npm run build

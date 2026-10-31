@@ -1,8 +1,11 @@
 import type { MetadataRoute } from "next";
 import { getPublishedPosts, getTags } from "@/lib/posts";
+import { isSplashMode } from "@/lib/site-mode";
 import { site } from "@/lib/site";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  if (isSplashMode()) return [];
+
   const posts = await getPublishedPosts();
   const tags = await getTags();
   const latest = posts[0]?.date;

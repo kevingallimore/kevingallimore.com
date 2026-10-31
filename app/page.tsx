@@ -1,17 +1,23 @@
 import { PostList } from "@/components/post-list";
-import { pageMetadata } from "@/lib/metadata";
+import { Splash } from "@/components/splash";
+import { pageMetadata, splashMetadata } from "@/lib/metadata";
 import { getPublishedPosts } from "@/lib/posts";
+import { isSplashMode } from "@/lib/site-mode";
 import { site } from "@/lib/site";
 
-export const metadata = pageMetadata({
-  description: site.description,
-  path: "/",
-});
+export const metadata = isSplashMode()
+  ? splashMetadata()
+  : pageMetadata({
+      description: site.description,
+      path: "/",
+    });
 
 // Prerender the full page. Post files are cached in lib/posts.ts.
 export const ensureStatic = "navigation";
 
 export default async function HomePage() {
+  if (isSplashMode()) return <Splash />;
+
   const posts = await getPublishedPosts();
   const recent = posts.slice(0, 5);
 

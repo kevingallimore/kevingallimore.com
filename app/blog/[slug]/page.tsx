@@ -3,9 +3,12 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/json-ld";
 import { proseClassName } from "@/components/mdx";
+import { Splash } from "@/components/splash";
 import { compilePost } from "@/lib/compile";
 import { formatDate, tagSlug } from "@/lib/format";
+import { splashMetadata } from "@/lib/metadata";
 import { getPost, getPublishedPosts } from "@/lib/posts";
+import { isSplashMode } from "@/lib/site-mode";
 import { site } from "@/lib/site";
 
 export const ensureStatic = "navigation";
@@ -23,6 +26,8 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: PageProps<"/blog/[slug]">): Promise<Metadata> {
+  if (isSplashMode()) return splashMetadata();
+
   const { slug } = await params;
   const post = await getPost(slug);
   if (!post) return { title: "Not found" };
@@ -55,6 +60,8 @@ export async function generateMetadata({
 export default async function PostPage({
   params,
 }: PageProps<"/blog/[slug]">) {
+  if (isSplashMode()) return <Splash />;
+
   const { slug } = await params;
   const post = await getPost(slug);
   if (!post) notFound();

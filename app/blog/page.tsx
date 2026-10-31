@@ -1,17 +1,23 @@
 import { PostList } from "@/components/post-list";
-import { pageMetadata } from "@/lib/metadata";
+import { Splash } from "@/components/splash";
+import { pageMetadata, splashMetadata } from "@/lib/metadata";
 import { getPublishedPosts } from "@/lib/posts";
+import { isSplashMode } from "@/lib/site-mode";
 import { site } from "@/lib/site";
 
-export const metadata = pageMetadata({
-  title: "Blog",
-  description: `Writing by ${site.name} on CRM, email, personalization, Salesforce Marketing Cloud, and Data 360.`,
-  path: "/blog",
-});
+export const metadata = isSplashMode()
+  ? splashMetadata()
+  : pageMetadata({
+      title: "Blog",
+      description: `Writing by ${site.name} on CRM, email, personalization, Salesforce Marketing Cloud, and Data 360.`,
+      path: "/blog",
+    });
 
 export const ensureStatic = "navigation";
 
 export default async function BlogPage() {
+  if (isSplashMode()) return <Splash />;
+
   const posts = await getPublishedPosts();
 
   return (

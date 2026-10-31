@@ -24,15 +24,22 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:3000](http://localhost:3000). With no environment variable, this is the coming-soon splash, which is also what a fresh Vercel deploy shows.
+
+To work on the full site locally:
+
+```bash
+SITE_MODE=live npm run dev
+```
 
 ```bash
 npm run lint
 npm run build
+SITE_MODE=live npm run build
 npm start
 ```
 
-`npm start` serves the production build. Use that before a deploy if you want to see the same output Vercel will serve.
+`npm run build` with `SITE_MODE` unset builds the splash. `npm start` serves that production build. Use `SITE_MODE=live npm run build` before `npm start` when you want to preview the full site.
 
 Posts marked `draft: true` show up in `npm run dev` with a Draft label. A production build, the sitemap, and the RSS feed skip them.
 
@@ -91,18 +98,60 @@ The site needs at least one published post to build. Post and tag pages are prer
 
 ```text
 app/                  routes, sitemap, robots, RSS, and generated images
-components/           header, footer, theme toggle, post list
+components/splash.tsx the coming-soon / offline page
 content/posts/        one MDX file per post
+lib/site-mode.ts      reads SITE_MODE (unset means splash)
 lib/posts.ts          reads posts and hides drafts in production
 lib/highlight.ts      Shiki setup, including AMPscript and SSJS
 lib/site.ts           name, title, canonical URL, and profile links
+proxy.ts              sends every public URL to the splash while offline
 ```
 
 `lib/site.ts` is the place to change the public URL or a profile link. The LinkedIn URL must stay `https://www.linkedin.com/in/kevin-gallimore` (with the hyphen). The path without the hyphen is a different person.
 
+## Turn the site on
+
+`SITE_MODE` chooses what a deployment serves. It is read at **build** time. Saving the variable in Vercel does not change the site that is already deployed. You have to deploy again.
+
+| `SITE_MODE` | What visitors get |
+| --- | --- |
+| unset | The splash. This is the default. |
+| `splash` | The splash. Same as unset. |
+| `live` | The full site. |
+
+Anything else fails the build, so a typo cannot quietly publish or hide the wrong version.
+
+While the splash is up, `/about`, `/blog`, posts, tags, `/rss.xml`, and `/sitemap.xml` redirect to `/`. That page is the splash and is served with HTTP 503, a `noindex` robots tag, and an `X-Robots-Tag: noindex` header. `robots.txt` disallows the whole host and does not list a sitemap, so the blog URLs are not advertised. The Person details (name, job title, and the LinkedIn, GitHub, and Trailblazer profiles) stay on the splash for search engines.
+
+### Publish the full site
+
+1. Open the Vercel project.
+2. Go to **Settings → Environment Variables**.
+3. Add `SITE_MODE` with the value `live`.
+4. Apply it to **Production**. Add it to **Preview** as well if preview URLs should show the full site.
+5. Deploy again. Open **Deployments**, choose the latest deployment, **Redeploy**, and leave **Use existing Build Cache** off. A new build is what picks up the variable.
+
+After that deploy finishes, the home page, blog, and About page should be the real site, and `/robots.txt` should allow crawling and point at the sitemap.
+
+### Take the site offline again
+
+1. In the same Vercel setting, change `SITE_MODE` to `splash`, or delete the variable. Unset means splash.
+2. Redeploy with the build cache off, the same way as above.
+
+The splash component is `components/splash.tsx`. The sentence on that page is "This site is coming soon." Change that sentence in the file if a later outage needs a different note, then redeploy.
+
+Local equivalents:
+
+```bash
+npm run dev                  # splash
+SITE_MODE=live npm run dev   # full site
+SITE_MODE=splash npm run build
+SITE_MODE=live npm run build
+```
+
 ## Deploy
 
-Hosting is Vercel Hobby. DNS stays on Cloudflare. No environment variables are required.
+Hosting is Vercel Hobby. DNS stays on Cloudflare. The only environment variable is `SITE_MODE`, and only when you want the full site. Leave it unset to keep the splash.
 
 1. Merge this project to `main`.
 2. In Vercel, import the GitHub repository. The framework preset is Next.js. The build command is `npm run build`.

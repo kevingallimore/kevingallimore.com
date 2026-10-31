@@ -1,15 +1,21 @@
-import { pageMetadata } from "@/lib/metadata";
+import { Splash } from "@/components/splash";
+import { pageMetadata, splashMetadata } from "@/lib/metadata";
+import { isSplashMode } from "@/lib/site-mode";
 import { site } from "@/lib/site";
 
-export const metadata = pageMetadata({
-  title: "About",
-  description: `About ${site.name}, ${site.jobTitle}. ${site.tagline}`,
-  path: "/about",
-});
+export const metadata = isSplashMode()
+  ? splashMetadata()
+  : pageMetadata({
+      title: "About",
+      description: `About ${site.name}, ${site.jobTitle}. ${site.tagline}`,
+      path: "/about",
+    });
 
 export const ensureStatic = "navigation";
 
 export default function AboutPage() {
+  if (isSplashMode()) return <Splash />;
+
   return (
     <div className="mx-auto w-full max-w-3xl px-6 py-16 sm:py-20">
       <h1 className="font-serif text-4xl font-medium tracking-tight sm:text-5xl">

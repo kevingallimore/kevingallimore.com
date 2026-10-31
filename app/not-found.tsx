@@ -1,6 +1,10 @@
 import Link from "next/link";
+import { Splash } from "@/components/splash";
+import { isSplashMode } from "@/lib/site-mode";
 
 export default function NotFound() {
+  if (isSplashMode()) return <Splash />;
+
   return (
     <div className="mx-auto w-full max-w-3xl px-6 py-24">
       <p className="text-sm font-medium tracking-[0.16em] text-accent uppercase">

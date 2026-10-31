@@ -4,8 +4,11 @@ import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { JsonLd } from "@/components/json-ld";
 import { ThemeProvider } from "@/components/theme-provider";
+import { isSplashMode } from "@/lib/site-mode";
 import { site } from "@/lib/site";
 import "./globals.css";
+
+const splash = isSplashMode();
 
 const newsreader = Newsreader({
   subsets: ["latin"],
@@ -33,7 +36,11 @@ export const metadata: Metadata = {
     default: site.name,
     template: `%s · ${site.name}`,
   },
-  description: site.description,
+  description: splash
+    ? `${site.tagline} This site is coming soon.`
+    : site.description,
+  // The holding page must not be indexed as the finished site.
+  ...(splash ? { robots: { index: false, follow: false } } : {}),
   applicationName: site.name,
   authors: [{ name: site.name, url: site.url }],
   creator: site.name,
@@ -48,23 +55,31 @@ export const metadata: Metadata = {
     "AMPscript",
     "SSJS",
   ],
-  alternates: {
-    types: {
-      "application/rss+xml": "/rss.xml",
-    },
-  },
+  ...(splash
+    ? {}
+    : {
+        alternates: {
+          types: {
+            "application/rss+xml": "/rss.xml",
+          },
+        },
+      }),
   openGraph: {
     type: "website",
     locale: "en_US",
     siteName: site.name,
     title: site.name,
-    description: site.description,
+    description: splash
+      ? `${site.tagline} This site is coming soon.`
+      : site.description,
     url: site.url,
   },
   twitter: {
     card: "summary_large_image",
     title: site.name,
-    description: site.description,
+    description: splash
+      ? `${site.tagline} This site is coming soon.`
+      : site.description,
   },
 };
 

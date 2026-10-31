@@ -1,8 +1,11 @@
 import { getPost, getPublishedPosts } from "@/lib/posts";
 import { ogContentType, ogSize, renderOgImage } from "@/lib/og";
+import { isSplashMode } from "@/lib/site-mode";
 import { site } from "@/lib/site";
 
-export const alt = `Blog post by ${site.name}`;
+export const alt = isSplashMode()
+  ? `${site.name}. This site is coming soon.`
+  : `Blog post by ${site.name}`;
 export const size = ogSize;
 export const contentType = ogContentType;
 
@@ -16,6 +19,14 @@ export default async function PostOpenGraphImage({
 }: {
   params: Promise<{ slug: string }>;
 }) {
+  if (isSplashMode()) {
+    return renderOgImage({
+      kicker: "Coming soon",
+      title: site.name,
+      footer: site.tagline,
+    });
+  }
+
   const { slug } = await params;
   const post = await getPost(slug);
 
