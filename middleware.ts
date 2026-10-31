@@ -43,6 +43,8 @@ export default async function middleware(request: Request): Promise<Response> {
   });
 }
 
+// The path matcher lives only in this file. vercel.json names this file as
+// the proxy entrypoint, and a second matcher there fails the Vercel build.
 export const config = {
   matcher: ["/((?!assets/|img/).*)"],
 };
