@@ -3,60 +3,204 @@
 @import "@fontsource/newsreader/500.css";
 @import "@fontsource/jetbrains-mono/400.css";
 
+/*
+  Sleek blue + orange.
+  About 90% of the page stays neutral. Blue is for links and structure.
+  Orange is only for the main button, link hover, and the active nav underline.
+  Topic colors are for tag chips, not for the rest of the page.
+*/
 :root {
-  --ifm-color-primary: #0c5c47;
-  --ifm-color-primary-dark: #0a4e3c;
-  --ifm-color-primary-darker: #094a38;
-  --ifm-color-primary-darkest: #073d2e;
-  --ifm-color-primary-light: #0e6a53;
-  --ifm-color-primary-lighter: #0f7158;
-  --ifm-color-primary-lightest: #12866a;
-  --ifm-background-color: #f7f4ef;
-  --ifm-font-color-base: #1a1714;
-  --ifm-heading-color: #1a1714;
-  --ifm-navbar-background-color: #f7f4ef;
-  --ifm-footer-background-color: #f7f4ef;
-  --ifm-footer-color: #5c564c;
-  --ifm-footer-link-color: #0c5c47;
+  --color-bg: #fafbfc;
+  --color-surface: #ffffff;
+  --color-text: #0f172a;
+  --color-muted: #475569;
+  --color-border: #e5e7eb;
+  --color-blue: #2453c7;
+  --color-cta: #c2410c;
+  --color-cta-hover: #923109;
+  --color-cta-text: #ffffff;
+  --color-code-bg: #f1f5f9;
+
+  --topic-marketing-cloud-engagement: #1e4fc2;
+  --topic-marketing-cloud-personalization: #0e6e9e;
+  --topic-data-360: #0f766e;
+  --topic-personalization: #a75a06;
+  /* A step away from the button orange (#C2410C) so Exam Prep chips stay distinct. */
+  --topic-exam-prep: #b54708;
+
+  --ifm-color-primary: var(--color-blue);
+  --ifm-color-primary-dark: #1c419c;
+  --ifm-color-primary-darker: #183886;
+  --ifm-color-primary-darkest: #0d1d45;
+  --ifm-color-primary-light: #577fe1;
+  --ifm-color-primary-lighter: #98b0ec;
+  --ifm-color-primary-lightest: #eef2fc;
+  --ifm-color-primary-contrast-background: var(--color-blue);
+  --ifm-color-primary-contrast-foreground: #ffffff;
+
+  --ifm-background-color: var(--color-bg);
+  --ifm-background-surface-color: var(--color-surface);
+  --ifm-font-color-base: var(--color-text);
+  --ifm-heading-color: var(--color-text);
+  --ifm-color-content: var(--color-text);
+  --ifm-color-content-secondary: var(--color-muted);
+  --ifm-font-color-secondary: var(--color-muted);
+  --ifm-color-emphasis-100: var(--color-code-bg);
+  --ifm-color-emphasis-200: #eef2f6;
+  --ifm-color-emphasis-300: var(--color-border);
+  --ifm-color-emphasis-700: var(--color-muted);
+  --ifm-toc-border-color: var(--color-border);
+  --ifm-hr-background-color: var(--color-border);
+  --ifm-table-border-color: var(--color-border);
+
+  --ifm-navbar-background-color: var(--color-surface);
+  --ifm-navbar-link-color: var(--color-text);
+  --ifm-navbar-link-hover-color: var(--color-cta);
+  --ifm-navbar-link-active-color: var(--color-text);
+  --ifm-navbar-shadow: none;
+  --ifm-navbar-search-input-background-color: var(--color-code-bg);
+  --ifm-navbar-search-input-color: var(--color-text);
+  --ifm-navbar-search-input-placeholder-color: var(--color-muted);
+
+  --ifm-footer-background-color: var(--color-bg);
+  --ifm-footer-color: var(--color-muted);
+  --ifm-footer-title-color: var(--color-text);
+  --ifm-footer-link-color: var(--color-blue);
+  --ifm-footer-link-hover-color: var(--color-cta);
+
+  --ifm-link-color: var(--color-blue);
+  --ifm-link-hover-color: var(--color-cta);
+  --ifm-menu-color: var(--color-muted);
+  --ifm-menu-color-active: var(--color-blue);
+
+  --ifm-code-background: var(--color-code-bg);
+  --ifm-pre-background: var(--color-code-bg);
+
   --ifm-font-family-base: "Source Sans 3", "Source Sans Pro", sans-serif;
   --ifm-heading-font-family: Newsreader, Georgia, serif;
   --ifm-font-family-monospace: "JetBrains Mono", ui-monospace, monospace;
   --ifm-code-font-size: 90%;
   --ifm-h1-font-size: 3.2rem;
   --ifm-line-height-base: 1.7;
-  --docusaurus-highlighted-code-line-bg: rgba(12, 92, 71, 0.08);
+  --docusaurus-highlighted-code-line-bg: rgba(36, 83, 199, 0.12);
 }
 
 [data-theme="dark"] {
-  --ifm-color-primary: #8ee0c6;
-  --ifm-color-primary-dark: #7ed9bb;
-  --ifm-color-primary-darker: #6fd4b4;
-  --ifm-color-primary-darkest: #4ec6a0;
-  --ifm-color-primary-light: #9ee6cf;
-  --ifm-color-primary-lighter: #a8e9d4;
-  --ifm-color-primary-lightest: #c3f1e3;
-  --ifm-background-color: #121418;
-  --ifm-font-color-base: #f4efe6;
-  --ifm-heading-color: #f4efe6;
-  --ifm-navbar-background-color: #121418;
-  --ifm-footer-background-color: #121418;
-  --ifm-footer-color: #c2baae;
-  --ifm-footer-link-color: #8ee0c6;
-  --docusaurus-highlighted-code-line-bg: rgba(142, 224, 198, 0.12);
+  --color-bg: #0b0f17;
+  --color-surface: #131a24;
+  --color-text: #e6eaf0;
+  --color-muted: #94a3b8;
+  --color-border: #243042;
+  --color-blue: #7aa2f7;
+  --color-cta: #fb923c;
+  --color-cta-hover: #fa760a;
+  --color-cta-text: #0b0f17;
+  --color-code-bg: #1a2332;
+
+  --topic-marketing-cloud-engagement: #7aa2f7;
+  --topic-marketing-cloud-personalization: #5cc2f0;
+  --topic-data-360: #4fd1c5;
+  --topic-personalization: #fbbf24;
+  --topic-exam-prep: #fb923c;
+
+  --ifm-color-primary: var(--color-blue);
+  --ifm-color-primary-dark: #4a80f4;
+  --ifm-color-primary-darker: #3270f3;
+  --ifm-color-primary-darkest: #0c4acc;
+  --ifm-color-primary-light: #c2d4fb;
+  --ifm-color-primary-lighter: #dce7fd;
+  --ifm-color-primary-lightest: #f0f4fe;
+  --ifm-color-primary-contrast-background: var(--color-blue);
+  --ifm-color-primary-contrast-foreground: #0b0f17;
+
+  --ifm-background-color: var(--color-bg);
+  --ifm-background-surface-color: var(--color-surface);
+  --ifm-font-color-base: var(--color-text);
+  --ifm-heading-color: var(--color-text);
+  --ifm-color-content: var(--color-text);
+  --ifm-color-content-secondary: var(--color-muted);
+  --ifm-font-color-secondary: var(--color-muted);
+  --ifm-color-emphasis-100: var(--color-surface);
+  --ifm-color-emphasis-200: var(--color-code-bg);
+  --ifm-color-emphasis-300: var(--color-border);
+  --ifm-color-emphasis-700: var(--color-muted);
+  --ifm-toc-border-color: var(--color-border);
+  --ifm-hr-background-color: var(--color-border);
+  --ifm-table-border-color: var(--color-border);
+
+  --ifm-navbar-background-color: var(--color-surface);
+  --ifm-navbar-link-color: var(--color-text);
+  --ifm-navbar-link-hover-color: var(--color-cta);
+  --ifm-navbar-search-input-background-color: var(--color-bg);
+  --ifm-navbar-search-input-color: var(--color-text);
+  --ifm-navbar-search-input-placeholder-color: var(--color-muted);
+
+  --ifm-footer-background-color: var(--color-bg);
+  --ifm-footer-color: var(--color-muted);
+  --ifm-footer-title-color: var(--color-text);
+  --ifm-footer-link-color: var(--color-blue);
+  --ifm-footer-link-hover-color: var(--color-cta);
+
+  --ifm-link-color: var(--color-blue);
+  --ifm-link-hover-color: var(--color-cta);
+  --ifm-menu-color: var(--color-muted);
+  --ifm-menu-color-active: var(--color-blue);
+
+  --ifm-code-background: var(--color-code-bg);
+  --ifm-pre-background: var(--color-code-bg);
+
+  --docusaurus-highlighted-code-line-bg: rgba(122, 162, 247, 0.18);
 }
 
 .navbar {
   box-shadow: none;
-  border-bottom: 1px solid var(--ifm-toc-border-color);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.navbar__link--active,
+.navbar-sidebar .menu__link--active {
+  color: var(--color-text);
+  box-shadow: inset 0 -2px 0 var(--color-cta);
+}
+
+.navbar-sidebar .menu__link:hover,
+.navbar-sidebar .menu__link--active:hover {
+  color: var(--color-cta);
 }
 
 .footer {
-  border-top: 1px solid var(--ifm-toc-border-color);
+  border-top: 1px solid var(--color-border);
+}
+
+.footer__link-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.footer-link-icon,
+.brand-icon {
+  width: 1rem;
+  height: 1rem;
+  flex: none;
 }
 
 :focus-visible {
   outline: 2px solid var(--ifm-color-primary);
   outline-offset: 3px;
+}
+
+:where(.button--primary):not(.button--outline) {
+  --ifm-button-background-color: var(--color-cta);
+  --ifm-button-border-color: var(--color-cta);
+  color: var(--color-cta-text);
+}
+
+:where(.button--primary):not(.button--outline):hover,
+.button--primary:not(.button--outline):active {
+  --ifm-button-background-color: var(--color-cta-hover);
+  --ifm-button-border-color: var(--color-cta-hover);
+  color: var(--color-cta-text);
 }
 
 .sr-only {
@@ -117,8 +261,8 @@
   gap: 0.85rem;
   margin: 2rem 0 0;
   padding: 1.15rem 0;
-  border-top: 1px solid var(--ifm-toc-border-color);
-  border-bottom: 1px solid var(--ifm-toc-border-color);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
   list-style: none;
 }
 
@@ -135,7 +279,7 @@
 }
 
 .profile-facts span {
-  color: var(--ifm-color-emphasis-700);
+  color: var(--color-muted);
 }
 
 @media (min-width: 640px) {
@@ -165,26 +309,26 @@
   display: grid;
   gap: 0.15rem;
   padding: 0.85rem 0;
-  border-bottom: 1px solid var(--ifm-toc-border-color);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .speaking-list span {
-  color: var(--ifm-color-emphasis-700);
+  color: var(--color-muted);
   font-size: 0.95rem;
 }
 
 .speaking-list__title {
-  color: var(--ifm-font-color-base);
+  color: var(--color-text);
   font-weight: 600;
 }
 
 .speaking-note {
   margin-top: 0.85rem;
-  color: var(--ifm-color-emphasis-700);
+  color: var(--color-muted);
 }
 
 .site-tagline {
-  color: var(--ifm-color-emphasis-700);
+  color: var(--color-muted);
   font-size: 1.25rem;
   line-height: 1.5;
 }
@@ -205,6 +349,7 @@
 .connect-list a {
   display: inline-flex;
   align-items: center;
+  gap: 0.45rem;
   min-height: 2.75rem;
 }
 
@@ -231,7 +376,7 @@
   height: auto;
   aspect-ratio: 1;
   object-fit: cover;
-  border: 1px solid var(--ifm-toc-border-color);
+  border: 1px solid var(--color-border);
   background: var(--ifm-color-emphasis-100);
 }
 
@@ -316,7 +461,7 @@
 }
 
 .contact-form .fsSubField label {
-  color: var(--ifm-color-emphasis-700);
+  color: var(--color-muted);
   font-size: 0.9rem;
   font-weight: 400;
 }
@@ -330,9 +475,9 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0.55rem 0.75rem;
-  border: 1px solid var(--ifm-color-emphasis-400);
-  border-radius: 2px;
-  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-surface);
   color: inherit;
   font-family: inherit;
   font-size: 1rem;
@@ -347,18 +492,19 @@
 .contact-form [type="submit"] {
   margin-top: 0.25rem;
   border: 0;
-  border-radius: 2px;
-  background: var(--ifm-color-primary);
-  color: #fff;
+  border-radius: 6px;
+  background: var(--color-cta);
+  color: var(--color-cta-text);
   font-family: var(--ifm-font-family-base);
   font-weight: 600;
   padding: 0.55rem 1rem;
   cursor: pointer;
 }
 
-[data-theme="dark"] .contact-form button,
-[data-theme="dark"] .contact-form [type="submit"] {
-  color: #121418;
+.contact-form button:hover,
+.contact-form [type="submit"]:hover {
+  background: var(--color-cta-hover);
+  color: var(--color-cta-text);
 }
 
 .contact-form__fallback {
@@ -367,7 +513,7 @@
 
 .recent-posts {
   margin-top: 3rem;
-  border-top: 1px solid var(--ifm-toc-border-color);
+  border-top: 1px solid var(--color-border);
   padding-top: 1.5rem;
 }
 
@@ -379,7 +525,7 @@
 
 .recent-posts > ul > li {
   padding: 1.25rem 0;
-  border-bottom: 1px solid var(--ifm-toc-border-color);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .recent-posts h3 {
@@ -389,14 +535,103 @@
 
 .recent-posts__date {
   margin: 0;
-  color: var(--ifm-color-emphasis-700);
+  color: var(--color-muted);
   font-size: 0.9rem;
 }
 
 .recent-posts__tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.25rem 1rem;
+  gap: 0.4rem;
   margin: 0.5rem 0 0;
-  font-size: 0.9rem;
+  padding: 0;
+  list-style: none;
+}
+
+.recent-posts__tags li {
+  margin: 0;
+}
+
+a.tag-chip {
+  --tag-chip-color: var(--color-blue);
+  --tag-chip-border: var(--color-border);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0 0.45rem 0.45rem 0;
+  padding: 0.12rem 0.6rem 0.16rem;
+  border: 1px solid var(--tag-chip-border);
+  border-radius: 999px;
+  background: var(--color-surface);
+  color: var(--tag-chip-color);
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.45;
+  text-decoration: none;
+}
+
+.recent-posts__tags a.tag-chip {
+  margin: 0;
+}
+
+a.tag-chip:hover {
+  text-decoration: none;
+}
+
+a.tag-chip:not([class*="tag-chip--"]):hover {
+  --tag-chip-color: var(--color-cta);
+  --tag-chip-border: var(--color-cta);
+}
+
+.tag-chip__icon {
+  width: 0.9rem;
+  height: 0.9rem;
+  flex: none;
+}
+
+.tag-chip__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.25rem;
+  padding: 0 0.35rem;
+  border-radius: 999px;
+  background: var(--color-bg);
+  color: var(--color-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+a.tag-chip--marketing-cloud-engagement {
+  --tag-chip-color: var(--topic-marketing-cloud-engagement);
+  --tag-chip-border: var(--topic-marketing-cloud-engagement);
+}
+
+a.tag-chip--marketing-cloud-personalization {
+  --tag-chip-color: var(--topic-marketing-cloud-personalization);
+  --tag-chip-border: var(--topic-marketing-cloud-personalization);
+}
+
+a.tag-chip--data-360 {
+  --tag-chip-color: var(--topic-data-360);
+  --tag-chip-border: var(--topic-data-360);
+}
+
+a.tag-chip--personalization {
+  --tag-chip-color: var(--topic-personalization);
+  --tag-chip-border: var(--topic-personalization);
+}
+
+a.tag-chip--exam-prep {
+  --tag-chip-color: var(--topic-exam-prep);
+  --tag-chip-border: var(--topic-exam-prep);
+}
+
+a.tag-chip--marketing-cloud-engagement:hover,
+a.tag-chip--marketing-cloud-personalization:hover,
+a.tag-chip--data-360:hover,
+a.tag-chip--personalization:hover,
+a.tag-chip--exam-prep:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
 }

@@ -1,6 +1,7 @@
 import type {ReactNode} from "react";
 import Link from "@docusaurus/Link";
 import {usePluginData} from "@docusaurus/useGlobalData";
+import TagChip from "@site/src/components/TagChip";
 
 type RecentPost = {
   title: string;
@@ -43,7 +44,7 @@ export default function RecentPosts(): ReactNode {
                   <ul className="recent-posts__tags" aria-label="Tags">
                     {post.tags.map((tag) => (
                       <li key={tag.permalink}>
-                        <Link to={tag.permalink}>{tag.label}</Link>
+                        <TagChip permalink={tag.permalink} label={tag.label} />
                       </li>
                     ))}
                   </ul>
