@@ -2,17 +2,7 @@ import type {ReactNode} from "react";
 import Layout from "@theme/Layout";
 import AboutCopy from "@site/src/components/AboutCopy";
 import ContactForm from "@site/src/components/ContactForm";
-import {
-  aboutDescription,
-  profileLinks,
-  site,
-  splashDocumentTitle,
-  splashTagline,
-} from "@site/src/site";
-
-const splashLinks = profileLinks.filter(
-  (link) => link.label === "LinkedIn" || link.label === "Trailblazer",
-);
+import {aboutDescription, site, splashDocumentTitle, splashTagline} from "@site/src/site";
 
 /**
  * Public homepage while the full site is still off.
@@ -26,22 +16,14 @@ export default function Splash(): ReactNode {
         <h1>{site.name}</h1>
         <p className="site-tagline">{splashTagline}</p>
         <AboutCopy count={3} />
-        <nav aria-label="Connect">
-          <ul className="connect-list">
-            {splashLinks.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  target="_blank"
-                  rel="me noopener noreferrer"
-                >
-                  {link.label}
-                  <span className="sr-only"> (opens in a new tab)</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <div className="contact-intro">
+          <h2>Get in Touch</h2>
+          <p>
+            Want to talk marketing technology, Salesforce, or how AI fits into
+            CRM and personalization? Send a note about strategy, a build, or
+            speaking.
+          </p>
+        </div>
         <ContactForm />
       </main>
     </Layout>
