@@ -111,7 +111,7 @@ Anything else stops the build, so a typo cannot publish the wrong version.
 
 While the splash is up:
 
-- The homepage shows the name, the senior CRM tagline, the first three About paragraphs, links to LinkedIn and Trailblazer, and the contact form. There is no email address.
+- The homepage shows the name, the senior CRM tagline, the first three About paragraphs, a short "Get in Touch" note, and the contact form. Profile links stay in the footer. There is no email address.
 - The page is indexable. The response is HTTP 200, with no `noindex` and no `Retry-After`.
 - `/about`, `/blog`, posts, tags, the reference section, RSS, and `/sitemap.xml` redirect to `/`.
 - `robots.txt` allows the host and does not list a sitemap, because this build does not publish one.

@@ -144,8 +144,22 @@
   background: var(--ifm-color-emphasis-100);
 }
 
+.contact-intro {
+  margin-top: 2.75rem;
+}
+
+.contact-intro h2 {
+  margin-bottom: 0.35rem;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.contact-intro p {
+  margin-bottom: 0;
+}
+
 .contact-form {
-  margin-top: 0.5rem;
+  margin-top: 1.25rem;
   color: var(--ifm-font-color-base);
   font-family: var(--ifm-font-family-base);
 }
