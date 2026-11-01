@@ -1,15 +1,17 @@
 import type {ReactNode} from "react";
-import useBaseUrl from "@docusaurus/useBaseUrl";
 import Layout from "@theme/Layout";
-import AboutCopy from "@site/src/components/AboutCopy";
 import ContactForm from "@site/src/components/ContactForm";
+import {
+  ContactIntro,
+  ProfileMast,
+  ProfileStory,
+} from "@site/src/components/Profile";
 import Splash from "@site/src/components/Splash";
-import {aboutDescription, headshotPath} from "@site/src/site";
+import {aboutDescription} from "@site/src/site";
 import {useSiteMode} from "@site/src/siteMode";
 
 export default function About(): ReactNode {
   const mode = useSiteMode();
-  const headshotSrc = useBaseUrl(headshotPath);
   if (mode !== "live") return <Splash />;
 
   return (
@@ -20,28 +22,9 @@ export default function About(): ReactNode {
         add a second Person script.
       */}
       <main className="site-intro">
-        <h1>About Kevin Gallimore</h1>
-        <div className="about-grid">
-          <figure>
-            {/*
-              TODO: Replace static/img/kevin-gallimore-headshot.jpg with
-              Kevin's real photo. This file is a neutral placeholder.
-            */}
-            <img
-              className="headshot"
-              src={headshotSrc}
-              alt="Kevin Gallimore headshot"
-              width={800}
-              height={800}
-            />
-          </figure>
-          <div>
-            <AboutCopy count={5} />
-          </div>
-        </div>
-        <p>
-          {`Want to talk martech strategy, Salesforce, or speaking? Reach out.`}
-        </p>
+        <ProfileMast title="About Kevin Gallimore" />
+        <ProfileStory />
+        <ContactIntro />
         <ContactForm />
       </main>
     </Layout>
